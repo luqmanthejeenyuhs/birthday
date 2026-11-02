@@ -1,0 +1,412 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday, Vida Amollo</title>
+<style>
+:root {
+  --primary: #176b68;
+  --gold: #f4d88c;
+  --background: #f5f1e7;
+  --surface: #fffdf7;
+  --text: #203b39;
+  --muted: #657c75;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--text);
+  font-family: 'Trebuchet MS', Arial, sans-serif;
+}
+main {
+  max-width: 1050px;
+  margin: auto;
+  padding: 34px 22px 70px;
+}
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  color: var(--muted);
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+nav .mark {
+  font-family: Georgia, serif;
+  color: var(--primary);
+  font-size: 20px;
+  text-transform: none;
+  letter-spacing: 0;
+}
+.hero {
+  text-align: center;
+  padding: 45px 24px;
+  border-radius: 32px;
+  background: linear-gradient(145deg, #fffdf7, #e8eee2);
+  border: 1px solid #dce5d7;
+  box-shadow: 0 20px 60px #345a4b12;
+}
+.eyebrow {
+  display: inline-block;
+  border: 1px solid #d9e2d4;
+  border-radius: 999px;
+  padding: 9px 16px;
+  color: var(--primary);
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+h1 {
+  font-family: Georgia, serif;
+  font-size: clamp(45px, 8vw, 90px);
+  font-weight: 400;
+  letter-spacing: -3px;
+  line-height: .98;
+  margin: 28px 0 18px;
+  color: #234c47;
+}
+h1 span {
+  font-style: italic;
+  color: #b38a35;
+}
+.hero p {
+  max-width: 560px;
+  margin: auto;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.8;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 28px;
+}
+button {
+  font: inherit;
+  cursor: pointer;
+  border: 0;
+  transition: transform .2s;
+}
+button:hover { transform: translateY(-2px); }
+.primary {
+  background: var(--primary);
+  color: white;
+  border-radius: 999px;
+  padding: 13px 22px;
+}
+.secondary {
+  background: var(--surface);
+  color: var(--primary);
+  border: 1px solid #d9e2d4;
+  border-radius: 999px;
+  padding: 13px 22px;
+}
+.section-heading {
+  text-align: center;
+  margin: 45px 0 24px;
+}
+.section-heading small {
+  color: #a17a29;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-size: 10px;
+}
+.section-heading h2 {
+  font: 400 clamp(27px, 4vw, 40px) Georgia, serif;
+  margin: 9px 0;
+}
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.card {
+  background: var(--surface);
+  border: 1px solid #dce5d7;
+  border-radius: 22px;
+  padding: 24px;
+  box-shadow: 0 12px 35px #345a4b0a;
+}
+.card .emoji { font-size: 28px; margin-bottom: 15px; }
+.card h3 {
+  font: 400 21px Georgia, serif;
+  color: #28534d;
+}
+.card p {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+.card button {
+  background: #e8eee2;
+  color: #27615b;
+  border-radius: 999px;
+  padding: 9px 14px;
+  font-size: 12px;
+  margin-top: 10px;
+}
+.note {
+  margin: 54px auto 40px;
+  max-width: 760px;
+  background: var(--surface);
+  border: 1px solid #dce5d7;
+  border-radius: 28px;
+  padding: 34px clamp(22px, 6vw, 55px);
+  text-align: center;
+}
+.note h2 {
+  font: 400 32px Georgia, serif;
+  color: #28534d;
+  margin-bottom: 20px;
+}
+.note p {
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.9;
+  white-space: pre-line;
+}
+.signature {
+  color: #a17a29;
+  font: italic 24px Georgia, serif;
+  margin-top: 20px;
+}
+footer {
+  text-align: center;
+  color: #8ca59a;
+  font-size: 11px;
+  letter-spacing: 1px;
+  margin-top: 60px;
+}
+.modal {
+  position: fixed;
+  inset: 0;
+  background: #183532dd;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 5;
+}
+.modal.show { display: flex; }
+.modal-inner {
+  background: var(--surface);
+  max-width: 440px;
+  width: 100%;
+  padding: 34px;
+  text-align: center;
+  border-radius: 25px;
+}
+.modal-inner .big { font-size: 48px; }
+.modal-inner h2 {
+  font: 400 31px Georgia, serif;
+  color: #28534d;
+}
+.modal-inner p { line-height: 1.8; color: var(--muted); }
+#confetti {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 8;
+  overflow: hidden;
+}
+.confetti-piece {
+  position: absolute;
+  top: -15px;
+  width: 9px;
+  height: 13px;
+  animation: fall 3s linear forwards;
+}
+@keyframes fall {
+  to { transform: translateY(110vh) rotate(720deg); opacity: .1; }
+}
+@media (max-width: 700px) {
+  main { padding-left: 17px; padding-right: 17px; }
+  .cards { grid-template-columns: 1fr; }
+  h1 { letter-spacing: -1.5px; }
+}
+</style>
+</head>
+<body>
+<main>
+  <nav>
+    <span class="mark">Vida, my love ✧</span>
+    <span>your birthday</span>
+  </nav>
+
+  <section class="hero">
+    <span class="eyebrow">to the girl who has my heart ♡</span>
+    <h1>Happy Birthday,<br><span>my beautiful Vida.</span></h1>
+    <p>
+      If I could give you one thing today, it would be the chance
+      to see yourself the way I see you: precious, beautiful,
+      deeply loved, and so much more special than words can explain.
+      You make my world sweeter just by being in it.
+    </p>
+    <div class="actions">
+      <button class="primary" id="celebrate">A birthday wish, from me ♡</button>
+      <button class="secondary" id="letterBtn">My heart in words</button>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-heading">
+      <small>things i adore about you</small>
+      <h2>My favorite things about my favorite girl</h2>
+    </div>
+
+    <div class="cards">
+      <article class="card">
+        <div class="emoji">🌷</div>
+        <h3>Your beautiful heart</h3>
+        <p>
+          There is something so lovely about the person you are.
+          Your kindness, your little ways, and the warmth you bring
+          mean more to me than you know.
+        </p>
+        <button data-modal="love">Tell me more ♡</button>
+      </article>
+
+      <article class="card">
+        <div class="emoji">✨</div>
+        <h3>Your smile, your laugh</h3>
+        <p>
+          Your smile has a way of staying with me. Even an ordinary
+          day feels brighter when I get to share a moment with you.
+        </p>
+        <button data-modal="bright">Why I adore it ♡</button>
+      </article>
+
+      <article class="card">
+        <div class="emoji">💞</div>
+        <h3>Being yours is special</h3>
+        <p>
+          I love getting to know you more, cheering you on,
+          and making memories with you. I’m grateful that
+          our paths crossed.
+        </p>
+        <button data-modal="dreams">A wish for us ♡</button>
+      </article>
+    </div>
+  </section>
+
+  <section class="note" id="letter">
+    <h2>A love letter to my Vida</h2>
+    <p>My sweetest Vida,
+
+Happy birthday, my love. I wish I could put into words everything you mean to me, but every time I try, it feels like words are too small. You are such a beautiful part of my life, and I’m thankful for every laugh, every conversation, every little moment, and every memory we get to make.
+
+I love the way you are you. I love your beauty, but even more, I love the heart and personality behind it. I love thinking about you when something reminds me of you. I love that your name can make an ordinary thought feel special. You have a place in my heart that no one else could fill.
+
+On your birthday, I hope you feel adored—not just today, but in all the little days that follow. I hope your dreams keep growing, that life gives you reasons to be proud, and that you always remember how worthy you are of kindness, happiness, and real love. I want to keep showing you, in the small ways and the big ones, how much you matter to me.
+
+Thank you for being my girlfriend, my beautiful girl, and someone I’m so happy to love. If I could make one birthday wish for us, it would be for more memories, more laughter, more understanding, and a love that keeps becoming something even more beautiful.
+
+Happy birthday, Vida Amollo. You are loved so, so much.</p>
+    <div class="signature">All my love, always ♡</div>
+  </section>
+
+  <section class="section-heading">
+    <small>one last thing, my love</small>
+    <h2>You mean the world to me.</h2>
+    <p>No website could ever hold all the love I have for you.<br>
+    I hope I get to keep reminding you, one day at a time.</p>
+  </section>
+
+  <footer>
+    MADE WITH ALL MY HEART FOR VIDA AMOLLO · HAPPY BIRTHDAY, MY LOVE ♡
+  </footer>
+</main>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true">
+  <div class="modal-inner">
+    <div class="big" id="modalEmoji">💌</div>
+    <h2 id="modalTitle">A little note</h2>
+    <p id="modalText"></p>
+    <button class="primary" id="closeModal">Close with love ♡</button>
+  </div>
+</div>
+<div id="confetti"></div>
+
+<script>
+const messages = {
+  love: {
+    emoji: '🌷',
+    title: 'Your heart is so lovely',
+    text: 'I adore the person you are, Vida. Your heart, your personality, and the little details that make you uniquely you are all precious to me. I hope you never forget how deeply you are appreciated.'
+  },
+  bright: {
+    emoji: '☀️',
+    title: 'Your smile stays with me',
+    text: 'There are moments when I think of your smile and find myself feeling happy all over again. You have this lovely way of making moments matter. I hope I get to see you smile a thousand more times.'
+  },
+  dreams: {
+    emoji: '💞',
+    title: 'A wish for us',
+    text: 'I wish us more honest conversations, more silly laughter, more beautiful memories, and the patience to keep learning each other. I’m so happy you’re my girlfriend, Vida. Happy birthday, my love. ♡'
+  },
+  gift: {
+    emoji: '💌',
+    title: 'My birthday wish for you',
+    text: 'My love, I hope this year brings you peace in your heart, joy in your days, and beautiful reasons to believe in yourself. I hope you feel loved in ways that are gentle, genuine, and lasting. And I hope I get to be part of many of those happy moments. Happy birthday, Vida. ♡'
+  }
+};
+
+const modal = document.getElementById('modal');
+
+function openModal(key) {
+  const message = messages[key];
+  document.getElementById('modalEmoji').textContent = message.emoji;
+  document.getElementById('modalTitle').textContent = message.title;
+  document.getElementById('modalText').textContent = message.text;
+  modal.classList.add('show');
+}
+
+document.querySelectorAll('[data-modal]').forEach(button => {
+  button.addEventListener('click', () => openModal(button.dataset.modal));
+});
+
+document.getElementById('closeModal').addEventListener('click', () => {
+  modal.classList.remove('show');
+});
+
+modal.addEventListener('click', event => {
+  if (event.target === modal) modal.classList.remove('show');
+});
+
+document.getElementById('letterBtn').addEventListener('click', () => {
+  document.getElementById('letter').scrollIntoView({
+    behavior: 'smooth',
+    block: 'center'
+  });
+});
+
+function confetti() {
+  const host = document.getElementById('confetti');
+  const colors = ['#176b68', '#e6c66d', '#9fc8b5', '#d5a94e', '#f5f1e7'];
+
+  for (let i = 0; i < 110; i++) {
+    const piece = document.createElement('i');
+    piece.className = 'confetti-piece';
+    piece.style.left = Math.random() * 100 + '%';
+    piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+    piece.style.animationDelay = Math.random() * 1.2 + 's';
+    piece.style.animationDuration = (2.3 + Math.random() * 2) + 's';
+    host.appendChild(piece);
+    setTimeout(() => piece.remove(), 5000);
+  }
+}
+
+document.getElementById('celebrate').addEventListener('click', () => {
+  confetti();
+  openModal('gift');
+});
+</script>
+</body>
+</html>
